@@ -3,8 +3,7 @@ using System.Collections;
 
 public class SwapTriggerController : MonoBehaviour 
 {
-	public Mesh targetMesh;
-	public Material targetMaterial;
+	public GameObject targetObject;
 
 	// Use this for initialization
 	void Start () 
@@ -22,8 +21,9 @@ public class SwapTriggerController : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag ("PersonMod"))
 		{
-			other.gameObject.GetComponent<MeshFilter>().mesh = targetMesh;
-			other.gameObject.GetComponent<MeshRenderer>().material = targetMaterial;
+			GameObject newO = (GameObject)Instantiate (targetObject, other.gameObject.transform.position, other.gameObject.transform.rotation);
+			newO.transform.parent = other.gameObject.transform.parent;
+			Destroy (other.gameObject, 0);
 		}
 	}
 }
