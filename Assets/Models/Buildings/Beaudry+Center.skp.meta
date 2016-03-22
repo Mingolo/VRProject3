@@ -1,0 +1,145 @@
+fileFormatVersion: 2
+guid: 55b203765b89f4c3ba1915022dcc55dc
+timeCreated: 1458612914
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000001200000013000000140000001500000016000000170000001800000019000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 834965edca5b3c32d5dc914bb96783e8
+  longitude: -118.25738082066938
+  latitude: 34.05628743667958
+  northCorrection: 359.29562765580306
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -197.75311, y: 135.47565, z: -22.361727}
+      lookAt: {x: -10.003773, y: 49.463406, z: 26.850166}
+      up: {x: 0.39191243, y: 0.9142494, z: 0.10272608}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: tree1
+    100004: tree1 1
+    100006: tree1 10
+    100008: tree1 11
+    100010: tree1 2
+    100012: tree1 3
+    100014: tree1 4
+    100016: tree1 5
+    100018: tree1 6
+    100020: tree1 7
+    100022: tree1 8
+    100024: tree1 9
+    400000: //RootNode
+    400002: tree1
+    400004: tree1 1
+    400006: tree1 10
+    400008: tree1 11
+    400010: tree1 2
+    400012: tree1 3
+    400014: tree1 4
+    400016: tree1 5
+    400018: tree1 6
+    400020: tree1 7
+    400022: tree1 8
+    400024: tree1 9
+    2300000: //RootNode
+    2300002: tree1
+    2300004: tree1 1
+    2300006: tree1 10
+    2300008: tree1 11
+    2300010: tree1 2
+    2300012: tree1 3
+    2300014: tree1 4
+    2300016: tree1 5
+    2300018: tree1 6
+    2300020: tree1 7
+    2300022: tree1 8
+    2300024: tree1 9
+    3300000: //RootNode
+    3300002: tree1
+    3300004: tree1 1
+    3300006: tree1 10
+    3300008: tree1 11
+    3300010: tree1 2
+    3300012: tree1 3
+    3300014: tree1 4
+    3300016: tree1 5
+    3300018: tree1 6
+    3300020: tree1 7
+    3300022: tree1 8
+    3300024: tree1 9
+    4300000: Mesh Beaudry+Center
+    4300002: Mesh tree1
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
