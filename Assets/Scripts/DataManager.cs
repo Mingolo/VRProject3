@@ -15,6 +15,13 @@ public class DataManager : MonoBehaviour {
 	static bool theatreSwitch;
 	static string currentTheatre, destinationTheatre;
 
+	private GameObject Player;
+	private GameObject Ground;
+	private GameObject Grauman;
+	private GameObject Pantages;
+	private GameObject Kodak;
+	private PlayerController playerControl;
+
 	Dictionary<string, Year> data;
 
 	// Use this for initialization
@@ -46,7 +53,12 @@ public class DataManager : MonoBehaviour {
 		madePredictions = false;
 		theatreSwitch = false;
 
-
+		Player = GameObject.FindWithTag("Player");
+		Ground = GameObject.FindWithTag("Ground");
+		Grauman = GameObject.FindWithTag("Grauman");
+		Pantages = GameObject.FindWithTag("Pantages");
+		Kodak = GameObject.FindWithTag("Kodak");
+		playerControl = Player.GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -127,15 +139,22 @@ public class DataManager : MonoBehaviour {
 				//teleport code here
 				switch (destinationTheatre) {
 				case "grauman":
-					//go to grauman game object
+					Vector3 temp = Grauman.transform.position;
+					temp.y = Ground.transform.position.y;
+					Player.transform.position = temp;
 					break;
 				case "pantages":
-					//go to pantages game object
+					Vector3 temp2 = Pantages.transform.position;
+					temp2.y = Ground.transform.position.y;
+					Player.transform.position = temp2;
 					break;
 				case "kodak":
-					//go to kodak game object
+					Vector3 temp3 = Kodak.transform.position;
+					temp3.y = Ground.transform.position.y;
+					Player.transform.position = temp3;
 					break;
 				}
+				playerControl.TeleportEffects();
 				currentTheatre = destinationTheatre;
 				currentNumbers = GetCurrentNumbers();
 				theatreSwitch = false;

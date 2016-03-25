@@ -39,4 +39,10 @@ public class PlayerController : MonoBehaviour
 			transform.position = walkHit.point;
 		}
 	}
+
+	public void TeleportEffects()
+	{
+		teleportParticles.Play();
+		teleportSound.Play();
+	}
 }
