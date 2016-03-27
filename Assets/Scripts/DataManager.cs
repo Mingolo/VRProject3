@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour {
 	static bool theatreSwitch;
 	static string currentTheatre, destinationTheatre;
 
+
 	private GameObject Player;
 	private GameObject Ground;
 	private GameObject Grauman;
@@ -22,7 +23,9 @@ public class DataManager : MonoBehaviour {
 	private GameObject Kodak;
 	private PlayerController playerControl;
 
-	Dictionary<string, Year> data;
+
+	public static Dictionary<string, Year> data;
+
 
 	// Use this for initialization
 	void Start () {
@@ -36,9 +39,9 @@ public class DataManager : MonoBehaviour {
 		data.Add ("1980", new Year(new double[]{92d, 2d, 6d}, new double[]{91.8d, 4.1d, 4.1d}));
 		data.Add ("1990", new Year(new double[]{92.5d, 5.6d, 1.9d}, new double[]{96.2d, 1.9d, 1.9d}));
 		data.Add ("2000", new Year(new double[]{80.7d, 11.3d, 8d}, new double[]{96.6d, 0d, 3.4d}));
-		data.Add ("2010", new Year());
+		data.Add ("2010", new Year(new double[]{85.4, 8.3, 6.8}, new double[]{96.2, 2.1, 1.7}));
 
-		//to do: add "correct" data for 2010
+
 
 		//variable set up
 		currentDecade = 1930;
@@ -138,6 +141,7 @@ public class DataManager : MonoBehaviour {
 			else {
 				//teleport code here
 				switch (destinationTheatre) {
+
 				case "grauman":
 					Vector3 temp = Grauman.transform.position;
 					temp.y = Ground.transform.position.y;
@@ -153,7 +157,9 @@ public class DataManager : MonoBehaviour {
 					temp3.y = Ground.transform.position.y;
 					Player.transform.position = temp3;
 					break;
+
 				}
+
 				playerControl.TeleportEffects();
 				currentTheatre = destinationTheatre;
 				currentNumbers = GetCurrentNumbers();
