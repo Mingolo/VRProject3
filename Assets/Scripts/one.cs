@@ -1,16 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using AssemblyCSharp;
+using System.Collections.Generic;
 
 public class one : MonoBehaviour {
 	int year;
 	int flag=0;
-	Animator anim;
+	//Animator anim;
     int walkHash = Animator.StringToHash("walkstate");
 	public bool man1trig1940=false;
 	void Start(){
 		DataManager dm=new DataManager();
-		anim=GetComponent<Animator>();
-		anim.SetBool("walkstate",false);
+		//anim=GetComponent<Animator>();
+		//anim.SetBool("walkstate",false);
 		
 	}
 	void OnTriggerEnter(Collider other) 
@@ -23,13 +25,27 @@ public class one : MonoBehaviour {
 		}
 			
 	void Update(){
-		year=DataManager.currentDecade;
+		//year=DataManager.currentDecade;
+		/*if(transform.position > GameObject.Find("man2").GetComponent<two>().coor['man11930r'])
+			anim.SetBool("walkstate",true);
 		
-		//if(year== 1930 && DataManager.currentDataset.Equals("race"))
-			//iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("one40"), "time", 30));
-        
+		if(transform.position>GameObject.Find("man2").GetComponent<two>().coor['man11940r'])
+			anim.SetBool("walkstate",true);
 		
+		if(transform.position>GameObject.Find("man2").GetComponent<two>().coor['man11950r'])
+			anim.SetBool("walkstate",true);
 		
+		if(transform.position<GameObject.Find("man2").GetComponent<two>().coor['man11960r'])
+			anim.SetBool("walkstate",true);
+		if(transform.position>GameObject.Find("man2").GetComponent<two>().coor['man11970r'])
+			anim.SetBool("walkstate",true);
+		if(transform.position>GameObject.Find("man2").GetComponent<two>().coor['man11980r'])
+			anim.SetBool("walkstate",true);
+		if(transform.position>GameObject.Find("man2").GetComponent<two>().coor['man11990r'])
+			anim.SetBool("walkstate",true);
+		if(transform.position>GameObject.Find("man2").GetComponent<two>().coor['man12000r'])
+			anim.SetBool("walkstate",true);
+		*/
 		//if(transform.position.x> -25 && transform.position.x< -24){
 			//anim.SetTrigger("stop");
 			//anim.SetBool("walkstate",false);
@@ -42,13 +58,8 @@ public class one : MonoBehaviour {
 		
 		
 		if(year == 1950 && transform.position.x > -24.159){
-			anim.SetBool("walkstate",true);
+			//anim.SetBool("walkstate",true);
 		}
-		if(transform.position.x> -12.3){
-			anim.SetTrigger("stop");
-			anim.SetBool("walkstate",false);
-			//var man1=Instantiate(gameObject);
-			//gameObject.active=false;
-		}
+		
 	}
 }
