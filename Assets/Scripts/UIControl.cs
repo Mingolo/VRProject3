@@ -56,7 +56,7 @@ public class UIControl : MonoBehaviour {
 				}
 
 				for (int i = 0; i < dataNumbers.Count; i++) {
-					dataNumbers [i].text = (DataManager.currentNumbers [i]).ToString ();
+					dataNumbers [i].text = (DataManager.currentNumbers [i]).ToString () + " %";
 				}
 			}
 
