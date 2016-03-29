@@ -166,11 +166,11 @@ public class PredictionManager : MonoBehaviour {
 		double[] temp = new double[3];
 		if (getFirstHalf) {
 			for (int i = 0; i < 3; i++) {
-				temp[i] = (double) predictedData [i];
+				temp[i] = (double) predictedData [i]*10;
 			}
 		} else {
 			for (int i = 3; i < 6; i++) {
-				temp[i-3] = (double) predictedData [i];
+				temp[i-3] = (double) predictedData [i]*10;
 			}
 		}
 		return temp;
