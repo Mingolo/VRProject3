@@ -7,6 +7,8 @@ public class two : MonoBehaviour {
 	int year;
 	int entered;
 	string activeman;
+	public int t=0;
+	public int t1=0;
 	public Dictionary<string,float> coor;
 	Animator anim;
 	Animator anim2;
@@ -346,14 +348,14 @@ public class two : MonoBehaviour {
 		if(year ==1990 && !DataManager.currentDataset.Equals("race")){
 			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11990s"], "time", 5,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21990s"], "time", 5,"eastype", iTween.EaseType.linear, "orienttopath", true));
-			gobj3.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -67.2f);
-			gobj4.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -75.2f);
-			gobj5.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -65.2f);
-			gobj6.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -70.2f);
-			gobj7.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -72.2f);
-			gobj8.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -66.2f);
-			gobj9.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -68.2f);
-			gobj10.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
+			gobj3.transform.position = new Vector3(coor["man31990r"]+0.0f, 0.0f, -72.54f);
+			gobj4.transform.position = new Vector3(coor["man41990r"]+0.0f, 0.0f, -70.99f);
+			gobj5.transform.position = new Vector3(coor["man51990r"]+0.0f, 0.0f, -71.27f);
+			gobj6.transform.position = new Vector3(coor["man61990r"]+0.0f, 0.0f, -69.66f);
+			gobj7.transform.position = new Vector3(coor["man71990r"]+0.0f, 0.0f, -68.48f);
+			gobj8.transform.position = new Vector3(coor["man81990r"]+0.0f, 0.0f, -74.82f);
+			gobj9.transform.position = new Vector3(coor["man91990r"]+0.0f, 0.0f, -70.99f);
+			gobj10.transform.position = new Vector3(coor["man101990r"]+0.0f, 0.0f, -67.82f);
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate",true);
 			if(gobj2.transform.position.x> 164.0f)
@@ -384,6 +386,7 @@ public class two : MonoBehaviour {
 		}
 		
 		if(year==2010){
+			int w=0,b=0,o=0,ht=0,ho=0,bi=0;
 			entered=PredictionManager.workingOnPredictions;
 			gobj1.transform.position = new Vector3(coor["man11960r"]+0.0f, 0.0f, -73.2f);
 			gobj2.transform.position = new Vector3(coor["man21960r"]+0.0f, 0.0f, -69.2f);
@@ -395,7 +398,7 @@ public class two : MonoBehaviour {
 			gobj8.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -66.2f);
 			gobj9.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -68.2f);
 			gobj10.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -71.2f);
-			int w=0,b=0,o=0,ht=0,ho=0,bi=0;
+			
 			if(entered==2 && flag==0){
 				flag=1;
 				w=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[0];
@@ -404,17 +407,19 @@ public class two : MonoBehaviour {
 				ht=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[3];
 				ho=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[4];
 				bi=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[5];
+				t=w+b+o;
+				t1=ht+ho+bi;
 				for(int i=0;i<w;i++){
 					Instantiate(GameObject.Find("man1"), new Vector3(i + 151.0f, 0.0f, -73.0f), Quaternion.identity);
-					//GameObject.Find("man1(Clone)").tag="clone";
+					
 				}
 				for(int i=0;i<b;i++){
 					Instantiate(GameObject.Find("man1"), new Vector3(i + 162.0f, 0.0f, -73.0f), Quaternion.identity);
-					//GameObject.Find("man1(Clone)").tag="clone";
+					
 				}
 				for(int i=0;i<o;i++){
 					Instantiate(GameObject.Find("man1"), new Vector3(i + 173.0f, 0.0f, -73.0f), Quaternion.identity);
-					//GameObject.Find("man1(Clone)").tag="clone";
+					
 				}
 				/*GameObject[] killEmAll;
 				killEmAll = GameObject.FindGameObjectsWithTag("clone");
@@ -422,12 +427,13 @@ public class two : MonoBehaviour {
 				{
 					Destroy(killEmAll[i].gameObject,20);
 				}*/
+				Invoke ("killClones", 20);
 
 			}
 			if(entered==3 && flag==1)
 			{	
 				for(int i=0;i<w+b+o;i++)
-					Destroy( GameObject.Find("man1(Clone)"));
+					GameObject.Destroy( GameObject.Find("man1(Clone)"));
 				
 				gobj1.transform.position = new Vector3(coor["man11990r"]+0.0f, 0.0f, -73.2f);
 				gobj2.transform.position = new Vector3(coor["man21990r"]+0.0f, 0.0f, -69.2f);
@@ -484,5 +490,25 @@ public class two : MonoBehaviour {
 			}
 		}
 		
+	}
+	void killClones(){
+		for(int i=0;i<t;i++){
+			Destroy(GameObject.Find("man1(Clone)"));
+			GameObject.Find("man1(Clone)").transform.position = new Vector3(coor["man11990r"]+0.0f, -30.0f, -73.2f);
+		}
+		GameObject.Find("man1").transform.position = new Vector3(coor["man11990r"]+0.0f, 0.0f, -73.2f);
+		GameObject.Find("man2").transform.position = new Vector3(coor["man21990r"]+0.0f, 0.0f, -69.2f);
+		GameObject.Find("man3").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -67.2f);
+		GameObject.Find("man4").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -75.2f);
+		GameObject.Find("man5").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -65.2f);
+		GameObject.Find("man6").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -70.2f);
+		GameObject.Find("man7").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -72.2f);
+		GameObject.Find("man8").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -66.2f);
+		GameObject.Find("man9").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -68.2f);
+		GameObject.Find("man10").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
+	}
+	void killClones2(){
+		for(int i=0;i<t1;i++)
+					Destroy( GameObject.Find("man1(Clone)"));			
 	}
 }
