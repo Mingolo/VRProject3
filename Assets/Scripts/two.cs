@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System;
 public class two : MonoBehaviour {
 	int year;
+	public GameObject[] clones;
+	public GameObject[] clones1;
 	int entered;
 	string activeman;
 	public int t=0;
@@ -406,33 +408,29 @@ public class two : MonoBehaviour {
 				ho=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[4];
 				bi=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[5];
 				t=w+b+o;
+				clones= new GameObject[t];
+	
 				t1=ht+ho+bi;
-				for(int i=0;i<w;i++){
-					Instantiate(GameObject.Find("man1"), new Vector3(i + 151.0f, 0.0f, -73.0f), Quaternion.identity);
+				clones1=new GameObject[t1];
+				int i=0;
+				for(int k=0;k<w;i++,k++){
+					clones[i]=Instantiate(GameObject.Find("man1"), new Vector3(k + 151.0f, 0.0f, -73.0f), Quaternion.identity) as GameObject;
 					
 				}
-				for(int i=0;i<b;i++){
-					Instantiate(GameObject.Find("man1"), new Vector3(i + 162.0f, 0.0f, -73.0f), Quaternion.identity);
+				for(int k=0;k<b;i++,k++){
+					clones[i]=Instantiate(GameObject.Find("man1"), new Vector3(k + 162.0f, 0.0f, -73.0f), Quaternion.identity) as GameObject;
 					
 				}
-				for(int i=0;i<o;i++){
-					Instantiate(GameObject.Find("man1"), new Vector3(i + 173.0f, 0.0f, -73.0f), Quaternion.identity);
+				for(int k=0;k<o;i++,k++){
+					clones[i]=Instantiate(GameObject.Find("man1"), new Vector3(k + 173.0f, 0.0f, -73.0f), Quaternion.identity) as GameObject;
 					
 				}
-				/*GameObject[] killEmAll;
-				killEmAll = GameObject.FindGameObjectsWithTag("clone");
-				for(int i = 0; i < killEmAll.Length; i++)
-				{
-					Destroy(killEmAll[i].gameObject,20);
-				}*/
+				
 				Invoke ("killClones", 20);
 
 			}
 			if(entered==3 && flag==1)
 			{	
-				for(int i=0;i<w+b+o;i++)
-					GameObject.Destroy( GameObject.Find("man1(Clone)"));
-				
 				gobj1.transform.position = new Vector3(coor["man11990r"]+0.0f, 0.0f, -73.2f);
 				gobj2.transform.position = new Vector3(coor["man21990r"]+0.0f, 0.0f, -69.2f);
 				gobj3.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -67.2f);
@@ -445,6 +443,7 @@ public class two : MonoBehaviour {
 				gobj10.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
 
 				flag=2;
+				entered=4;
 			}
 			if(entered==4 && flag==2){
 				gobj1.transform.position = new Vector3(coor["man11960r"]+0.0f, 0.0f, -73.2f);
@@ -458,18 +457,23 @@ public class two : MonoBehaviour {
 				gobj9.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -68.2f);
 				gobj10.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -71.2f);
 				flag=3;
+				int j=0;
+				for(int k=0;k<ht;j++,k++){
+					clones1[j]=Instantiate(GameObject.Find("man1"), new Vector3(k + 151.0f, 0.0f, -73.0f), Quaternion.identity) as GameObject;
+					
+				}
+				for(int k=0;k<ho;j++,k++){
+					clones1[j]=Instantiate(GameObject.Find("man1"), new Vector3(k + 162.0f, 0.0f, -73.0f), Quaternion.identity) as GameObject;
+					
+				}
+				for(int k=0;k<bi;j++,k++){
+					clones1[j]=Instantiate(GameObject.Find("man1"), new Vector3(k + 173.0f, 0.0f, -73.0f), Quaternion.identity) as GameObject;
+					
+				}
 				
-				for(int i=0;i<ht;i++){
-					Instantiate(GameObject.Find("man1"), new Vector3(i + 151.0f, 0.0f, -73.0f), Quaternion.identity);
-				}
-				for(int i=0;i<ho;i++){
-					Instantiate(GameObject.Find("man1"), new Vector3(i + 162.0f, 0.0f, -73.0f), Quaternion.identity);
-				}
-				for(int i=0;i<bi;i++){
-					Instantiate(GameObject.Find("man1"), new Vector3(i + 173.0f, 0.0f, -73.0f), Quaternion.identity);
-				}
+				Invoke("killClones2",20);
 			}
-			if(entered==5 && flag==3)
+			/*if(entered==5 && flag==3)
 			{
 				for(int i=0;i<ht+ho+bi;i++)
 					Destroy( GameObject.Find("man1(Clone)"));
@@ -485,28 +489,47 @@ public class two : MonoBehaviour {
 				gobj9.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -68.2f);
 				gobj10.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
 				flag=-1;
-			}
+			}*/
 		}
 		
 	}
 	void killClones(){
 		for(int i=0;i<t;i++){
-			Destroy(GameObject.Find("man1(Clone)"));
-			GameObject.Find("man1(Clone)").transform.position = new Vector3(coor["man11990r"]+0.0f, -30.0f, -73.2f);
+			GameObject.Destroy(clones[i]);
 		}
 		GameObject.Find("man1").transform.position = new Vector3(coor["man11990r"]+0.0f, 0.0f, -73.2f);
 		GameObject.Find("man2").transform.position = new Vector3(coor["man21990r"]+0.0f, 0.0f, -69.2f);
-		GameObject.Find("man3").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -67.2f);
-		GameObject.Find("man4").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -75.2f);
-		GameObject.Find("man5").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -65.2f);
-		GameObject.Find("man6").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -70.2f);
-		GameObject.Find("man7").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -72.2f);
-		GameObject.Find("man8").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -66.2f);
-		GameObject.Find("man9").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -68.2f);
-		GameObject.Find("man10").transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
+		GameObject.Find("man3").transform.position = new Vector3(coor["man31990r"]+0.0f, 0.0f, -67.2f);
+		GameObject.Find("man4").transform.position = new Vector3(coor["man41990r"]+0.0f, 0.0f, -75.2f);
+		GameObject.Find("man5").transform.position = new Vector3(coor["man51990r"]+0.0f, 0.0f, -65.2f);
+		GameObject.Find("man6").transform.position = new Vector3(coor["man61990r"]+0.0f, 0.0f, -70.2f);
+		GameObject.Find("man7").transform.position = new Vector3(coor["man71990r"]+0.0f, 0.0f, -72.2f);
+		GameObject.Find("man8").transform.position = new Vector3(coor["man81990r"]+0.0f, 0.0f, -66.2f);
+		GameObject.Find("man9").transform.position = new Vector3(coor["man91990r"]+0.0f, 0.0f, -68.2f);
+		GameObject.Find("man10").transform.position = new Vector3(coor["man101990r"]+0.0f, 0.0f, -71.2f);
+		
+		Invoke("callOrient",20);	
+	}
+	void callOrient()
+	{
+		entered=3;
+		flag=1;
+		Invoke("Update",0);
 	}
 	void killClones2(){
-		for(int i=0;i<t1;i++)
-					Destroy( GameObject.Find("man1(Clone)"));			
+		for(int i=0;i<t1;i++){
+			GameObject.Destroy(clones1[i]);
+			//GameObject.Find("man1(Clone)").transform.position = new Vector3(coor["man11990r"]+0.0f, -30.0f, -73.2f);
+		}	
+		GameObject.Find("man1").transform.position = new Vector3(coor["man11990r"]+0.0f, 0.0f, -73.2f);
+		GameObject.Find("man2").transform.position = new Vector3(coor["man21990r"]+0.0f, 0.0f, -69.2f);
+		GameObject.Find("man3").transform.position = new Vector3(coor["man31990r"]+0.0f, 0.0f, -67.2f);
+		GameObject.Find("man4").transform.position = new Vector3(coor["man41990r"]+0.0f, 0.0f, -75.2f);
+		GameObject.Find("man5").transform.position = new Vector3(coor["man51990r"]+0.0f, 0.0f, -65.2f);
+		GameObject.Find("man6").transform.position = new Vector3(coor["man61990r"]+0.0f, 0.0f, -70.2f);
+		GameObject.Find("man7").transform.position = new Vector3(coor["man71990r"]+0.0f, 0.0f, -72.2f);
+		GameObject.Find("man8").transform.position = new Vector3(coor["man81990r"]+0.0f, 0.0f, -66.2f);
+		GameObject.Find("man9").transform.position = new Vector3(coor["man91990r"]+0.0f, 0.0f, -68.2f);
+		GameObject.Find("man10").transform.position = new Vector3(coor["man101990r"]+0.0f, 0.0f, -71.2f);
 	}
 }
