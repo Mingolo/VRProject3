@@ -129,6 +129,11 @@ public class UIControl : MonoBehaviour {
 		} else if(PredictionManager.workingOnPredictions == 0 ){
 			PredictionManager.workingOnPredictions = 1;
 			Debug.Log ("turning off regular ui");
+			for (int i = 0; i < dataText.Count; i++) {
+				if (DataManager.currentDataset == "race") {
+					dataText [i].text = raceGroups [i];
+				} 
+			}
 			mainText.text = currentlyShowingArray [currentlyShowingIndex];
 			for (int i = 0; i < dataText.Count; i++) {
 				dataText [i].enabled = false;
@@ -137,6 +142,7 @@ public class UIControl : MonoBehaviour {
 				dataNumbers [i].enabled = false;
 			}
 
+			DataManager.currentDataset = "race";
 			predictionUI.SetActive (true);
 			//move this to prediction manager
 		}
