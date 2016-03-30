@@ -32,7 +32,7 @@ public class PredictionManager : MonoBehaviour {
 		dataSets = new string[]{ "white", "black", "other", "heterosexual", "homosexual", "bisexual"};
 		dataIndex = 0;
 		currentGroup.text = dataSets [dataIndex];
-		sliderVal.text = slider.value.ToString();
+		sliderVal.text = slider.value.ToString() + " %";
 
 		horButtonPressed = verButtonPressed = false;
 		uiControl = GameObject.Find ("ControlUI").GetComponent<UIControl> ();
@@ -49,13 +49,13 @@ public class PredictionManager : MonoBehaviour {
 			if (Input.GetAxis ("Horizontal") > 0.5 && !horButtonPressed) {
 				
 				slider.value = slider.value + 1;
-				sliderVal.text = slider.value.ToString ();
+				sliderVal.text = (slider.value*10).ToString () + " %";
 			}
 
 			if (Input.GetAxis ("Horizontal") < -0.5 && !horButtonPressed) {
 				
 				slider.value = slider.value - 1;
-				sliderVal.text = slider.value.ToString ();
+				sliderVal.text = (slider.value*10).ToString () + " %";
 			}
 			horButtonPressed = true;
 		}else {
@@ -70,7 +70,7 @@ public class PredictionManager : MonoBehaviour {
 				dataIndex--;
 				slider.value = (float)predictedData [dataIndex];
 				currentGroup.text = dataSets [dataIndex];
-				sliderVal.text = slider.value.ToString ();
+				sliderVal.text = (slider.value*10).ToString () + " %";
 			
 			}
 
@@ -80,7 +80,7 @@ public class PredictionManager : MonoBehaviour {
 				dataIndex++;
 				slider.value = (float)predictedData [dataIndex];
 				currentGroup.text = dataSets [dataIndex];
-				sliderVal.text = slider.value.ToString ();
+				sliderVal.text = (slider.value*10).ToString () + " %";
 			}
 		}else {
 			verButtonPressed = false;
