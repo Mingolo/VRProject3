@@ -20,7 +20,6 @@ public class two : MonoBehaviour {
 	Animator anim8;
 	Animator anim9;
 	Animator anim10;
-	Animator anim11;
 	int flag=0;
     int walkHash = Animator.StringToHash("walkstate");
 	GameObject gobj1;
@@ -125,7 +124,6 @@ public class two : MonoBehaviour {
 		anim8=GameObject.Find("man8").GetComponent<Animator>();
 		anim9=GameObject.Find("man9").GetComponent<Animator>();
 		anim10=GameObject.Find("man10").GetComponent<Animator>();
-		anim11=GameObject.Find("man11").GetComponent<Animator>();
 		
 	}
 		
