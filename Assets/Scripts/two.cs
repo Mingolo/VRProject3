@@ -2,40 +2,24 @@ using UnityEngine;
 using System.Collections;
 using AssemblyCSharp;
 using System.Collections.Generic;
+using System;
 public class two : MonoBehaviour {
 	int year;
+	int entered;
+	string activeman;
 	public Dictionary<string,float> coor;
-	/*coor["man11930s"]
-	coor["man11940s"]
-	coor["man11950s"]
-	coor["man11960s"]
-	coor["man11970s"]
-	coor["man11980s"]
-	coor["man11990s"]
-	coor["man12000s"]
-	coor["man12010s"]
-	coor["man21930r"]
-	coor["man21940r"]
-	coor["man21950r"]
-	coor["man21960r"]
-	coor["man21970r"]
-	coor["man21980r"]
-	coor["man21990r"]
-	coor["man22000r"]
-	coor["man22010r"]
-	coor["man21930s"]
-	coor["man21940s"]
-	coor["man21950s"]
-	coor["man21960s"]
-	coor["man21970s"]
-	coor["man21980s"]
-	coor["man21990s"]
-	coor["man22000s"]
-	coor["man22010s"]
-	*/		
 	Animator anim;
 	Animator anim2;
-	int flag=-1;
+	Animator anim3;
+	Animator anim4;
+	Animator anim5;
+	Animator anim6;
+	Animator anim7;
+	Animator anim8;
+	Animator anim9;
+	Animator anim10;
+	Animator anim11;
+	int flag=0;
     int walkHash = Animator.StringToHash("walkstate");
 	GameObject gobj1;
 	GameObject gobj2;
@@ -47,6 +31,7 @@ public class two : MonoBehaviour {
 	GameObject gobj8;
 	GameObject gobj9;
 	GameObject gobj10;
+	GameObject gobj11;
 	void Start(){
 		coor = new Dictionary<string,float>();
 		coor.Add("man11930r",-37.71f);
@@ -86,7 +71,32 @@ public class two : MonoBehaviour {
 		coor.Add("man22000s",155.0f);
 		coor.Add("man22010s",175.0f);
 		coor.Add("manx1960x", 48.0f);
-		coor.Add("manx1990x",155.0f);		
+		coor.Add("manx1990x",152.0f);
+		coor.Add("man31930r",-45.48f);
+		coor.Add("man41930r",-38.68f);
+		coor.Add("man51930r",-44.34f);
+		coor.Add("man61930r",-43.3f);
+		coor.Add("man71930r",-42.22f);
+		coor.Add("man81930r",-44.69f);
+		coor.Add("man91930r",-41.58f);
+		coor.Add("man101930r",-40.66f);
+		coor.Add("man31960r",41.0f);
+		coor.Add("man41960r",47.2f);
+		coor.Add("man51960r",42.0f);
+		coor.Add("man61960r",44.0f);
+		coor.Add("man71960r",45.0f);
+		coor.Add("man81960r",42.0f);
+		coor.Add("man91960r",45.0f);
+		coor.Add("man101960r",46.0f);
+		coor.Add("man31990r",151.0f);
+		coor.Add("man41990r",157.2f);
+		coor.Add("man51990r",152.0f);
+		coor.Add("man61990r",154.0f);
+		coor.Add("man71990r",155.0f);
+		coor.Add("man81990r",152.0f);
+		coor.Add("man91990r",155.0f);
+		coor.Add("man101990r",156.0f);
+				
 		gobj1=GameObject.Find("man1");
 		gobj2=GameObject.Find("man2");
 		gobj3=GameObject.Find("man3");
@@ -97,157 +107,177 @@ public class two : MonoBehaviour {
 		gobj8=GameObject.Find("man8");
 		gobj9=GameObject.Find("man9");
 		gobj10=GameObject.Find("man10");
+		gobj11=GameObject.Find("man11");
 		anim=GameObject.Find("man1").GetComponent<Animator>();
 		anim2=GetComponent<Animator>();
 		DataManager dm=new DataManager();
 		anim.SetBool("walkstate",false);
+		PredictionManager pm= new PredictionManager();
+		anim=GameObject.Find("man1").GetComponent<Animator>();
+		anim2=GameObject.Find("man2").GetComponent<Animator>();
+		anim3=GameObject.Find("man3").GetComponent<Animator>();
+		anim4=GameObject.Find("man4").GetComponent<Animator>();
+		anim5=GameObject.Find("man5").GetComponent<Animator>();
+		anim6=GameObject.Find("man6").GetComponent<Animator>();
+		anim7=GameObject.Find("man7").GetComponent<Animator>();
+		anim8=GameObject.Find("man8").GetComponent<Animator>();
+		anim9=GameObject.Find("man9").GetComponent<Animator>();
+		anim10=GameObject.Find("man10").GetComponent<Animator>();
+		anim11=GameObject.Find("man11").GetComponent<Animator>();
+		
 	}
 		
 	void Update(){
 		year=DataManager.currentDecade;
 		if(year== 1930 && DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,270,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,270,0);
-			//iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("path", iTweenPath.GetPath("one40"), "time", 30));
-        	iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11930r"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21930r"], "time", 30));
-			//gobj1.transform.rotation = Quaternion.Euler(0,0,0);
-			anim.SetBool("walkstate",true);
-			anim2.SetBool("walkstate", true);
-			if(gobj2.transform.position.x > coor["man21930r"])
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11930r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21930r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			if(gobj2.transform.position.x > 37.709f)
 				anim2.SetBool("walkstate",true);
-			if(gobj1.transform.position.x > coor["man11930r"])
+			if(gobj1.transform.position.x > 37.709f)
 				anim.SetBool("walkstate",true);
+			if(gobj2.transform.position.x < 37.0f)
+				anim2.SetBool("walkstate",false);
+			if(gobj1.transform.position.x < 37.0f)
+				anim.SetBool("walkstate",false);
 		
 		}
 		
 		if(year== 1930 && !DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,90,0);
-			//iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("path", iTweenPath.GetPath("one40"), "time", 30));
-        	iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11930s"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21930s"], "time", 30));
-			//gobj1.transform.rotation = Quaternion.Euler(0,0,0);
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11930s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21930s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate", true);
-			if(gobj2.transform.position.x> -24.3f)
+			if(gobj2.transform.position.x> -26.0f)
 				anim2.SetBool("walkstate",false);
-			if(gobj1.transform.position.x> -13f)
+			if(gobj1.transform.position.x> -14.0f)
 				anim.SetBool("walkstate",false);
 		
 		}
 		if(year== 1940 && DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,90,0);
-			//iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("path", iTweenPath.GetPath("one40"), "time", 30));
-        	iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11940r"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21940r"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11940r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21940r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate", true);
 			if(gobj2.transform.position.x< -37.0f)
 				anim2.SetBool("walkstate",false);
-			if(gobj1.transform.position.x> -24.3f)
+			if(gobj1.transform.position.x> -25.3f && gobj1.transform.position.x< -22.0f)
 				anim.SetBool("walkstate",false);
 			
 		}
 		if(year== 1940 && !DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,270,0);
-			//iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("path", iTweenPath.GetPath("one40"), "time", 30));
-        	iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11940s"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21940s"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11940s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21940s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate", true);
 			if(gobj2.transform.position.x< -37.0f)
 				anim2.SetBool("walkstate",false);
-			if(gobj1.transform.position.x> -24.3f)
+			if(gobj1.transform.position.x> -14.3f)
 				anim.SetBool("walkstate",false);
 			
 		}
 			
 		if(GameObject.Find("man1").GetComponent<one>().man1trig1940==true){
-			//anim.SetTrigger("stop");
-			//anim.SetBool("walkstate",false);
-			//if(flag==-1){
-			//Instantiate(GameObject.Find("man1"));
-			//GameObject.Find("man1").active=false;
-			//GameObject.Find("man1(Clone)").name="man11";
-			//flag=1;
-			//}
+			gobj11.transform.position=new Vector3(-24.18f, 0.0f, -73.2f);
+			gobj1.transform.position=new Vector3(-24.15f, -25.0f, -73.2f);
+			//activeman="man11";	
 		}
 		if(year ==1950 && DataManager.currentDataset.Equals("race")){
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11950r"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21950r"], "time", 30));
+			//gobj1.transform.position=new Vector3(-24.15f, 0.0f, -73.2f);
+			//gobj11.transform.position=new Vector3(-24.15f, -25.0f, -73.2f);
+			iTween.MoveTo(gobj1, iTween.Hash("x", coor["man11950r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			//gobj1.transform.position = Vector3.Lerp(gobj1.transform.position, Vector3(-12.5f, 0.0f, -73.2f), 1.0f);
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21950r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
+			//anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate", true);
+			gobj3.transform.position = new Vector3(coor["man31930r"]+0.0f, 0.0f, -72.54f);
+			gobj4.transform.position = new Vector3(coor["man41930r"]+0.0f, 0.0f, -70.99f);
+			gobj5.transform.position = new Vector3(coor["man51930r"]+0.0f, 0.0f, -71.27f);
+			gobj6.transform.position = new Vector3(coor["man61930r"]+0.0f, 0.0f, -69.66f);
+			gobj7.transform.position = new Vector3(coor["man71930r"]+0.0f, 0.0f, -68.48f);
+			gobj8.transform.position = new Vector3(coor["man81930r"]+0.0f, 0.0f, -74.82f);
+			gobj9.transform.position = new Vector3(coor["man91930r"]+0.0f, 0.0f, -70.99f);
+			gobj10.transform.position = new Vector3(coor["man101930r"]+0.0f, 0.0f, -67.82f);
+			
 			if(gobj2.transform.position.x< -37.0f)
 				anim2.SetBool("walkstate",false);
-			if(gobj1.transform.position.x> -24.3f)
+			if(gobj1.transform.position.x> -14.0f)
 				anim.SetBool("walkstate",false);
 			
 		}
 		if(year ==1950 && !DataManager.currentDataset.Equals("race")){
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11950s"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21950s"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11950s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21950s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate", true);
+			gobj3.transform.position = new Vector3(coor["man31930r"]+0.0f, 0.0f, -72.54f);
+			gobj4.transform.position = new Vector3(coor["man41930r"]+0.0f, 0.0f, -70.99f);
+			gobj5.transform.position = new Vector3(coor["man51930r"]+0.0f, 0.0f, -71.27f);
+			gobj6.transform.position = new Vector3(coor["man61930r"]+0.0f, 0.0f, -69.66f);
+			gobj7.transform.position = new Vector3(coor["man71930r"]+0.0f, 0.0f, -68.48f);
+			gobj8.transform.position = new Vector3(coor["man81930r"]+0.0f, 0.0f, -74.82f);
+			gobj9.transform.position = new Vector3(coor["man91930r"]+0.0f, 0.0f, -70.99f);
+			gobj10.transform.position = new Vector3(coor["man101930r"]+0.0f, 0.0f, -67.82f);
+			
 			if(gobj2.transform.position.x< -37.0f)
 				anim2.SetBool("walkstate",false);
-			if(gobj1.transform.position.x> -24.3f)
+			if(gobj1.transform.position.x> -14.3f)
 				anim.SetBool("walkstate",false);
 			
 		}		
 		if(year ==1960 && DataManager.currentDataset.Equals("race")){
-			//anim.SetTrigger("stop");
-			//anim.SetBool("walkstate",false);
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,90,0);
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11960r"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21960r"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man3"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man4"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man5"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man6"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man7"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man8"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man9"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man10"), iTween.Hash("x", coor["manx1960x"], "time", 15));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11960r"], "time", 5,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21960r"], "time", 5,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			gobj3.transform.position = new Vector3(coor["man31960r"]+0.0f, 0.0f, -72.54f);
+			gobj4.transform.position = new Vector3(coor["man41960r"]+0.0f, 0.0f, -70.99f);
+			gobj5.transform.position = new Vector3(coor["man51960r"]+0.0f, 0.0f, -71.27f);
+			gobj6.transform.position = new Vector3(coor["man61960r"]+0.0f, 0.0f, -69.66f);
+			gobj7.transform.position = new Vector3(coor["man71960r"]+0.0f, 0.0f, -68.48f);
+			gobj8.transform.position = new Vector3(coor["man81960r"]+0.0f, 0.0f, -74.82f);
+			gobj9.transform.position = new Vector3(coor["man91960r"]+0.0f, 0.0f, -70.99f);
+			gobj10.transform.position = new Vector3(coor["man101960r"]+0.0f, 0.0f, -67.82f);
+			anim.SetBool("walkstate",true);
+			anim2.SetBool("walkstate",true);
+			if(gobj2.transform.position.x> 57.0f)
+				anim2.SetBool("walkstate",false);
+			if(gobj1.transform.position.x> 69.0f)
+				anim.SetBool("walkstate",false);
 			
 		}
 		if(year ==1960 && !DataManager.currentDataset.Equals("race")){
-			//anim.SetTrigger("stop");
-			//anim.SetBool("walkstate",false);
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,90,0);
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11960s"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21960s"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man3"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man4"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man5"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man6"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man7"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man8"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man9"), iTween.Hash("x", coor["manx1960x"], "time", 15));
-			iTween.MoveTo(GameObject.Find("man10"), iTween.Hash("x", coor["manx1960x"], "time", 15));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11960s"], "time", 12,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21960s"], "time", 12,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			gobj3.transform.position = new Vector3(coor["man31960r"]+0.0f, 0.0f, -72.54f);
+			gobj4.transform.position = new Vector3(coor["man41960r"]+0.0f, 0.0f, -70.99f);
+			gobj5.transform.position = new Vector3(coor["man51960r"]+0.0f, 0.0f, -71.27f);
+			gobj6.transform.position = new Vector3(coor["man61960r"]+0.0f, 0.0f, -69.66f);
+			gobj7.transform.position = new Vector3(coor["man71960r"]+0.0f, 0.0f, -68.48f);
+			gobj8.transform.position = new Vector3(coor["man81960r"]+0.0f, 0.0f, -74.82f);
+			gobj9.transform.position = new Vector3(coor["man91960r"]+0.0f, 0.0f, -70.99f);
+			gobj10.transform.position = new Vector3(coor["man101960r"]+0.0f, 0.0f, -67.82f);
+			anim.SetBool("walkstate",true);
+			anim2.SetBool("walkstate",true);
+			if(gobj2.transform.position.x> 57.0f)
+				anim2.SetBool("walkstate",false);
+			if(gobj1.transform.position.x> 69.0f)
+				anim.SetBool("walkstate",false);
+			
 		}
 		
 		if(year==1970 && DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,270,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,270,0);
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11970r"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21970r"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11970r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21970r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate",true);
-			if(gobj2.transform.position.x< 49.0f)
+			if(gobj2.transform.position.x< 50.0f)
 				anim2.SetBool("walkstate",false);
-			if(gobj1.transform.position.x< 49.0f)
+			if(gobj1.transform.position.x< 50.0f)
 				anim.SetBool("walkstate",false);
 			}
 		if(year==1970 && !DataManager.currentDataset.Equals("race")){
-			//gobj1.transform.rotation = Quaternion.Euler(0,270,0);
-			//gobj2.transform.rotation = Quaternion.Euler(0,270,0);
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11970s"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21970s"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11970s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21970s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate",true);
 			if(gobj2.transform.position.x> 57.0f)
@@ -257,12 +287,18 @@ public class two : MonoBehaviour {
 			
 		}
 		if(year==1980 && DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,90,0);
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11980r"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21980r"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11980r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21980r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate",true);
+			gobj3.transform.position = new Vector3(coor["man31960r"]+0.0f, 0.0f, -72.54f);
+			gobj4.transform.position = new Vector3(coor["man41960r"]+0.0f, 0.0f, -70.99f);
+			gobj5.transform.position = new Vector3(coor["man51960r"]+0.0f, 0.0f, -71.27f);
+			gobj6.transform.position = new Vector3(coor["man61960r"]+0.0f, 0.0f, -69.66f);
+			gobj7.transform.position = new Vector3(coor["man71960r"]+0.0f, 0.0f, -68.48f);
+			gobj8.transform.position = new Vector3(coor["man81960r"]+0.0f, 0.0f, -74.82f);
+			gobj9.transform.position = new Vector3(coor["man91960r"]+0.0f, 0.0f, -70.99f);
+			gobj10.transform.position = new Vector3(coor["man101960r"]+0.0f, 0.0f, -67.82f);
 			if(gobj2.transform.position.x> 57.0f)
 				anim2.SetBool("walkstate",false);
 			if(gobj1.transform.position.x> 69.0f)
@@ -270,12 +306,18 @@ public class two : MonoBehaviour {
 			
 		}
 		if(year==1980 && !DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,90,0);
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11980s"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21980s"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11980s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21980s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate",true);
+			gobj3.transform.position = new Vector3(coor["man31960r"]+0.0f, 0.0f, -72.54f);
+			gobj4.transform.position = new Vector3(coor["man41960r"]+0.0f, 0.0f, -70.99f);
+			gobj5.transform.position = new Vector3(coor["man51960r"]+0.0f, 0.0f, -71.27f);
+			gobj6.transform.position = new Vector3(coor["man61960r"]+0.0f, 0.0f, -69.66f);
+			gobj7.transform.position = new Vector3(coor["man71960r"]+0.0f, 0.0f, -68.48f);
+			gobj8.transform.position = new Vector3(coor["man81960r"]+0.0f, 0.0f, -74.82f);
+			gobj9.transform.position = new Vector3(coor["man91960r"]+0.0f, 0.0f, -70.99f);
+			gobj10.transform.position = new Vector3(coor["man101960r"]+0.0f, 0.0f, -67.82f);
 			if(gobj2.transform.position.x> 57.0f)
 				anim2.SetBool("walkstate",false);
 			if(gobj1.transform.position.x> 69.0f)
@@ -283,9 +325,27 @@ public class two : MonoBehaviour {
 			
 		}
 		
-		if(year ==1990 && DataManager.currentDataset.Equals("race") ){
-			gobj1.transform.position = new Vector3(coor["man11990r"]+0.0f, 0.0f, -73.2f);
-			gobj2.transform.position = new Vector3(coor["man21990r"]+0.0f, 0.0f, -69.2f);
+		if(year ==1990 && DataManager.currentDataset.Equals("race")){
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11990r"], "time", 5,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21990r"], "time", 5,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			gobj3.transform.position = new Vector3(coor["man31990r"]+0.0f, 0.0f, -72.54f);
+			gobj4.transform.position = new Vector3(coor["man41990r"]+0.0f, 0.0f, -70.99f);
+			gobj5.transform.position = new Vector3(coor["man51990r"]+0.0f, 0.0f, -71.27f);
+			gobj6.transform.position = new Vector3(coor["man61990r"]+0.0f, 0.0f, -69.66f);
+			gobj7.transform.position = new Vector3(coor["man71990r"]+0.0f, 0.0f, -68.48f);
+			gobj8.transform.position = new Vector3(coor["man81990r"]+0.0f, 0.0f, -74.82f);
+			gobj9.transform.position = new Vector3(coor["man91990r"]+0.0f, 0.0f, -70.99f);
+			gobj10.transform.position = new Vector3(coor["man101990r"]+0.0f, 0.0f, -67.82f);
+			anim.SetBool("walkstate",true);
+			anim2.SetBool("walkstate",true);
+			if(gobj2.transform.position.x> 164.0f)
+				anim2.SetBool("walkstate",false);
+			if(gobj1.transform.position.x> 174.0f)
+				anim.SetBool("walkstate",false);
+		}
+		if(year ==1990 && !DataManager.currentDataset.Equals("race")){
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man11990s"], "time", 5,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man21990s"], "time", 5,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			gobj3.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -67.2f);
 			gobj4.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -75.2f);
 			gobj5.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -65.2f);
@@ -294,29 +354,16 @@ public class two : MonoBehaviour {
 			gobj8.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -66.2f);
 			gobj9.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -68.2f);
 			gobj10.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
+			anim.SetBool("walkstate",true);
+			anim2.SetBool("walkstate",true);
+			if(gobj2.transform.position.x> 164.0f)
+				anim2.SetBool("walkstate",false);
+			if(gobj1.transform.position.x> 174.0f)
+				anim.SetBool("walkstate",false);
 		}
-		if(year ==1990 && !DataManager.currentDataset.Equals("race") ){
-			gobj1.transform.position = new Vector3(coor["man11990s"]+0.0f, 0.0f, -73.2f);
-			gobj2.transform.position = new Vector3(coor["man21990s"]+0.0f, 0.0f, -69.2f);
-			gobj3.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -67.2f);
-			gobj4.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -75.2f);
-			gobj5.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -65.2f);
-			gobj6.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -70.2f);
-			gobj7.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -72.2f);
-			gobj8.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -66.2f);
-			gobj9.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -68.2f);
-			gobj10.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
-		}
-		/*	anim.SetBool("walkstate",true);
-		if(transform.position.x> -25){
-			anim.SetTrigger("stop");
-			anim.SetBool("walkstate",false);
-		}*/
 		if(year==2000 && DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,90,0);
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man12000r"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man22000r"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man12000r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man22000r"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate",true);
 			if(gobj2.transform.position.x> 164.0f)
@@ -326,10 +373,8 @@ public class two : MonoBehaviour {
 			
 		}
 		if(year==2000 && !DataManager.currentDataset.Equals("race")){
-			gobj1.transform.rotation = Quaternion.Euler(0,90,0);
-			gobj2.transform.rotation = Quaternion.Euler(0,270,0);
-			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man12000s"], "time", 30));
-			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man22000s"], "time", 30));
+			iTween.MoveTo(GameObject.Find("man1"), iTween.Hash("x", coor["man12000s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
+			iTween.MoveTo(GameObject.Find("man2"), iTween.Hash("x", coor["man22000s"], "time", 20,"eastype", iTween.EaseType.linear, "orienttopath", true));
 			anim.SetBool("walkstate",true);
 			anim2.SetBool("walkstate",true);
 			if(gobj2.transform.position.x< 156.0f)
@@ -337,5 +382,107 @@ public class two : MonoBehaviour {
 			if(gobj1.transform.position.x> 174.0f)
 				anim.SetBool("walkstate",false);
 		}
+		
+		if(year==2010){
+			entered=PredictionManager.workingOnPredictions;
+			gobj1.transform.position = new Vector3(coor["man11960r"]+0.0f, 0.0f, -73.2f);
+			gobj2.transform.position = new Vector3(coor["man21960r"]+0.0f, 0.0f, -69.2f);
+			gobj3.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -67.2f);
+			gobj4.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -75.2f);
+			gobj5.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -65.2f);
+			gobj6.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -70.2f);
+			gobj7.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -72.2f);
+			gobj8.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -66.2f);
+			gobj9.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -68.2f);
+			gobj10.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -71.2f);
+			int w=0,b=0,o=0,ht=0,ho=0,bi=0;
+			if(entered==2 && flag==0){
+				flag=1;
+				w=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[0];
+				b=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[1];
+				o=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[2];
+				ht=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[3];
+				ho=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[4];
+				bi=GameObject.Find("PredictionUI").GetComponent<PredictionManager>().predictedData[5];
+				for(int i=0;i<w;i++){
+					Instantiate(GameObject.Find("man1"), new Vector3(i + 151.0f, 0.0f, -73.0f), Quaternion.identity);
+					//GameObject.Find("man1(Clone)").tag="clone";
+				}
+				for(int i=0;i<b;i++){
+					Instantiate(GameObject.Find("man1"), new Vector3(i + 162.0f, 0.0f, -73.0f), Quaternion.identity);
+					//GameObject.Find("man1(Clone)").tag="clone";
+				}
+				for(int i=0;i<o;i++){
+					Instantiate(GameObject.Find("man1"), new Vector3(i + 173.0f, 0.0f, -73.0f), Quaternion.identity);
+					//GameObject.Find("man1(Clone)").tag="clone";
+				}
+				/*GameObject[] killEmAll;
+				killEmAll = GameObject.FindGameObjectsWithTag("clone");
+				for(int i = 0; i < killEmAll.Length; i++)
+				{
+					Destroy(killEmAll[i].gameObject,20);
+				}*/
+
+			}
+			if(entered==3 && flag==1)
+			{	
+				for(int i=0;i<w+b+o;i++)
+					Destroy( GameObject.Find("man1(Clone)"));
+				
+				gobj1.transform.position = new Vector3(coor["man11990r"]+0.0f, 0.0f, -73.2f);
+				gobj2.transform.position = new Vector3(coor["man21990r"]+0.0f, 0.0f, -69.2f);
+				gobj3.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -67.2f);
+				gobj4.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -75.2f);
+				gobj5.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -65.2f);
+				gobj6.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -70.2f);
+				gobj7.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -72.2f);
+				gobj8.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -66.2f);
+				gobj9.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -68.2f);
+				gobj10.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
+
+				flag=2;
+			}
+			if(entered==4 && flag==2){
+				gobj1.transform.position = new Vector3(coor["man11960r"]+0.0f, 0.0f, -73.2f);
+				gobj2.transform.position = new Vector3(coor["man21960r"]+0.0f, 0.0f, -69.2f);
+				gobj3.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -67.2f);
+				gobj4.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -75.2f);
+				gobj5.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -65.2f);
+				gobj6.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -70.2f);
+				gobj7.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -72.2f);
+				gobj8.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -66.2f);
+				gobj9.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -68.2f);
+				gobj10.transform.position = new Vector3(coor["manx1960x"]+0.0f, 0.0f, -71.2f);
+				flag=3;
+				
+				for(int i=0;i<ht;i++){
+					Instantiate(GameObject.Find("man1"), new Vector3(i + 151.0f, 0.0f, -73.0f), Quaternion.identity);
+				}
+				for(int i=0;i<ho;i++){
+					Instantiate(GameObject.Find("man1"), new Vector3(i + 162.0f, 0.0f, -73.0f), Quaternion.identity);
+				}
+				for(int i=0;i<bi;i++){
+					Instantiate(GameObject.Find("man1"), new Vector3(i + 173.0f, 0.0f, -73.0f), Quaternion.identity);
+				}
+			}
+			if(entered==5 && flag==3)
+			{
+				for(int i=0;i<ht+ho+bi;i++)
+					Destroy( GameObject.Find("man1(Clone)"));
+				
+				gobj1.transform.position = new Vector3(coor["man11990r"]+0.0f, 0.0f, -73.2f);
+				gobj2.transform.position = new Vector3(coor["man21990r"]+0.0f, 0.0f, -69.2f);
+				gobj3.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -67.2f);
+				gobj4.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -75.2f);
+				gobj5.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -65.2f);
+				gobj6.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -70.2f);
+				gobj7.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -72.2f);
+				gobj8.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -66.2f);
+				gobj9.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -68.2f);
+				gobj10.transform.position = new Vector3(coor["manx1990x"]+0.0f, 0.0f, -71.2f);
+				flag=-1;
+			}
+		}
+		
 	}
 }

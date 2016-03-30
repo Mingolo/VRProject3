@@ -14,7 +14,7 @@ public class PredictionManager : MonoBehaviour {
 	public Image bbutton;
 	UIControl uiControl;
 
-	bool showActualRa, showPredictedOrient, showActualOrient;
+	public bool showActualRa, showPredictedOrient, showActualOrient;
 
 	//0 - has not started process, 1 - in process, 2 - made predictions
 	public static int workingOnPredictions;
